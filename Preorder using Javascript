@@ -1,0 +1,62 @@
+//Pre-Order
+class Node
+{
+    constructor(Item)
+    {
+        this.left = null;
+        this.right = null;
+        this.data = Item;
+    }
+}
+let root;
+function Preorderiterative(node)
+{
+    if (node == null)
+    {
+        return;
+    }
+ 
+    let st = [];
+
+    let Current = node;
+
+    while (Current != null || st.length > 0)
+    {
+        while (Current != null)
+        {
+            console.log(Current.data + " ");
+ 
+            if (Current.right != null)
+                st.push(Current.right);
+            Current = Current.left;
+        }
+        if (st.length > 0)
+        {
+            Current = st.pop();
+        }
+    }
+} 
+function preorder()
+{
+    Preorderiterative(root);
+}
+console.log("Pre order:") 
+root = new Node(20);
+root.left = new Node(30);
+root.right = new Node(40);
+root.left.left = new Node(50);
+root.left.left.left = new Node(60);
+root.left.right = new Node(70);
+root.right.left = new Node(80);
+root.left.left.right = new Node(90);
+preorder();
+//Output:
+//Pre order:
+//20 
+//30
+//50
+//60
+//90
+//70
+//40
+//80
