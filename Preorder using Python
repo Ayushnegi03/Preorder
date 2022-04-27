@@ -1,0 +1,48 @@
+#Preorder
+class Node:    
+    def __init__(self, data):
+        self.left = None
+        self.right = None
+        self.data = data
+    def Insert(self, data):
+        if self.data:
+            if data < self.data:
+                if self.left is None:
+                    self.left = Node(data)
+                else:
+                    self.left.Insert(data)
+            elif data > self.data:
+                if self.right is None:
+                    self.right = Node(data)
+                else:
+                    self.right.Insert(data)
+        else:
+            self.data = data
+    def PrintTree(self):
+        if self.left:
+            self.left.PrintTree()
+        print( self.data),
+        if self.right:
+            self.right.PrintTree()
+    def PreorderTraversal(self, Root):
+        res = []
+        if Root:
+            res.append(Root.data)
+            res = res + self.PreorderTraversal(Root.left)
+            res = res + self.PreorderTraversal(Root.right)
+        return res
+Root = Node(27)
+Root.Insert(14)
+Root.Insert(35)
+Root.Insert(10)
+Root.Insert(19)
+Root.Insert(31)
+Root.Insert(42)
+Root.Insert(15)
+Root.Insert(36)
+Root.Insert(22)
+print("Preorder:")
+print(Root.PreorderTraversal(Root))
+#Output-
+#Preorder:
+#[27, 14, 10, 19, 15, 22, 35, 31, 42, 36]
