@@ -1,0 +1,49 @@
+//Preorder Traversal 
+//(Root, Left, Right)
+#include<iostream>
+using namespace std;
+struct node 
+{
+   int Data;
+   struct node *Left;
+   struct node *Right;
+};
+struct node *createNode(int val) {
+   struct node *tmp = (struct node *)malloc(sizeof(struct node));
+   tmp->Data = val;
+   tmp->Left = tmp->Right = NULL;
+   return tmp;
+}
+void preorder(struct node *root) {
+   if (root != NULL) {
+      cout<<root->Data<<" ";
+      preorder(root->Left);
+      preorder(root->Right);
+   }
+}
+struct node* insertNode(struct node* node, int val) {
+   if (node == NULL) return createNode(val);
+   if (val < node->Data)
+   node->Left = insertNode(node->Left, val);
+   else if (val > node->Data)
+   node->Right = insertNode(node->Right, val);
+   return node;
+}
+int main() 
+{
+   struct node *root = NULL;
+   root = insertNode(root, 6);
+   insertNode(root, 5);
+   insertNode(root, 2);
+   insertNode(root, 9);
+   insertNode(root, 1);
+   insertNode(root, 3);
+   insertNode(root, 7);
+   insertNode(root, 4);
+   cout<<"Pre-Order traversal : "<<"\n";
+   preorder(root);
+   return 0;
+}
+//Output-
+//Pre-Order traversal :
+//6  5  2  1  3  4  9  7
